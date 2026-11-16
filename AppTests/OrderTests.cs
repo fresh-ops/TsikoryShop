@@ -25,8 +25,10 @@ public class OrderTests
     public void Add_Throws_WhenQuantityIsNotPositive(int quantity)
     {
         var order = new Order(Guid.NewGuid());
+        order.Add(MenuItem.Espresso, 1);
 
         Assert.Throws<ArgumentOutOfRangeException>(() => order.Add(MenuItem.Espresso, quantity));
+        Assert.That(order.TotalPrice, Is.EqualTo(MenuItem.Espresso.Price));
     }
 
     [Test]
