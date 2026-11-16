@@ -28,4 +28,19 @@ public class OrderTests
 
         Assert.Throws<ArgumentOutOfRangeException>(() => order.Add(MenuItem.Espresso, quantity));
     }
+
+    [Test]
+    public void ToString_CollapsesItems()
+    {
+        var order = new Order(Guid.NewGuid());
+        order.Add(MenuItem.Espresso, 1);
+        order.Add(MenuItem.Espresso, 2);
+
+        var result = order.ToString();
+        var expected = """
+            Эспрессо x3 300
+        """;
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
 }
