@@ -7,3 +7,4 @@ public enum MenuItem
     Croissant, 
     Latte
 }
+
