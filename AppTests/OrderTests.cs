@@ -7,7 +7,9 @@ public class OrderTests
     [Test]
     public void ToString_ShowsAllItems()
     {
-        var order = new Order(Guid.NewGuid(), [MenuItem.Espresso, MenuItem.Croissant], 220m);
+        var order = new Order(Guid.NewGuid());
+        order.Add(MenuItem.Espresso, 1);
+        order.Add(MenuItem.Croissant, 1);
 
         var result = order.ToString();
         var expected = """
@@ -22,7 +24,7 @@ public class OrderTests
     [TestCase(-1)]
     public void Add_Throws_WhenQuantityIsNotPositive(int quantity)
     {
-        var order = new Order(Guid.NewGuid(), Array.Empty<OrderItem>(), 0m);
+        var order = new Order(Guid.NewGuid());
 
         Assert.Throws<ArgumentOutOfRangeException>(() => order.Add(MenuItem.Espresso, quantity));
     }

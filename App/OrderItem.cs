@@ -1,19 +1,10 @@
 namespace App;
 
-public record OrderItem(MenuItem Type, int Quantity, decimal Price)
+public record OrderItem(MenuItem Type, int Quantity)
 {
-    public override string ToString()
-    {
-        var name = Type switch
-        {
-            MenuItem.Espresso => "Эспрессо",
-            MenuItem.Cappuccino => "Капучино",
-            MenuItem.Croissant => "Круассан",
-            MenuItem.Latte => "Латте",
-            _ => throw new ArgumentOutOfRangeException(nameof(Type), Type, null)
-        };
+    public decimal TotalPrice => Quantity * Type.Price;
 
-        return $"{name} x{Quantity} {Quantity * Price}";
-    }
+    public override string ToString()
+        => $"{Type.Name} x{Quantity} {Quantity * Type.Price}";
 }
 
