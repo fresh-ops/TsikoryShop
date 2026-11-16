@@ -7,6 +7,10 @@ public record Order(Guid Id, OrderItem[] Items, decimal TotalPrice)
     {
     }
 
+    public void Add(MenuItem item, int quantity)
+    {
+    }
+
     public override string ToString()
         => string.Join(Environment.NewLine, Items.Select(item => $"    {item}"));
 }

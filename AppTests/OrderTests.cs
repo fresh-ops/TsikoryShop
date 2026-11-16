@@ -17,4 +17,13 @@ public class OrderTests
 
         Assert.That(result, Is.EqualTo(expected));
     }
+
+    [TestCase(0)]
+    [TestCase(-1)]
+    public void Add_Throws_WhenQuantityIsNotPositive(int quantity)
+    {
+        var order = new Order(Guid.NewGuid(), Array.Empty<OrderItem>(), 0m);
+
+        Assert.Throws<ArgumentOutOfRangeException>(() => order.Add(MenuItem.Espresso, quantity));
+    }
 }
