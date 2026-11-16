@@ -4,23 +4,14 @@ namespace AppTests;
 
 public class ShopTests
 {
-    [Test]
-    public void MakeOrder_CostsZero_WhenEmpty()
+    [TestCase([new MenuItem[0]], ExpectedResult = 0)]
+    [TestCase([new MenuItem[] { MenuItem.Espresso }], ExpectedResult = 100)]
+    [TestCase([new MenuItem[] { MenuItem.Espresso, MenuItem.Espresso, MenuItem.Espresso }], ExpectedResult = 300)]
+    public decimal MakeOrder_CalculatesTotalPrice(MenuItem[] items)
     {
         var shop = new Shop();
+        var order = shop.MakeOrder(items);
 
-        var order = shop.MakeOrder();
-
-        Assert.That(order.TotalPrice, Is.EqualTo(0));
-    }
-
-    [Test]
-    public void MakeOrder_Costs100_WhenOneEspresso()
-    {
-        var shop = new Shop();
-
-        var order = shop.MakeOrder(MenuItem.Espresso);
-
-        Assert.That(order.TotalPrice, Is.EqualTo(100));
+        return order.TotalPrice;
     }
 }
