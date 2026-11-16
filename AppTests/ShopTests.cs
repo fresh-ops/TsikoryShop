@@ -7,6 +7,7 @@ public class ShopTests
     [TestCase([new MenuItem[0]], ExpectedResult = 0)]
     [TestCase([new MenuItem[] { MenuItem.Espresso }], ExpectedResult = 100)]
     [TestCase([new MenuItem[] { MenuItem.Espresso, MenuItem.Espresso, MenuItem.Espresso }], ExpectedResult = 300)]
+    [TestCase([new MenuItem[] { MenuItem.Latte, MenuItem.Espresso, MenuItem.Croissant }], ExpectedResult = 420)]
     public decimal MakeOrder_CalculatesTotalPrice(MenuItem[] items)
     {
         var shop = new Shop();
