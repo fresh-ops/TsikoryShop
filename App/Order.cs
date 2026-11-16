@@ -12,8 +12,16 @@ public record Order(Guid Id)
             throw new ArgumentOutOfRangeException(nameof(quantity));
         }
 
-        var orderItem = new OrderItem(item, quantity);
-        Items.Add(orderItem);
+        var index = Items.FindIndex(orderItem => orderItem.Type == item);
+        if (index >= 0)
+        {
+            var existing = Items[index];
+            Items[index] = existing with { Quantity = existing.Quantity + quantity };
+        }
+        else
+        {
+            Items.Add(new OrderItem(item, quantity));
+        }
     }
 
     public override string ToString()
