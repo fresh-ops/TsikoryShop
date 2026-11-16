@@ -3,7 +3,7 @@ namespace App;
 public enum MenuItem
 {
     Espresso, 
-    Capuchino, 
-    Cruassan, 
+    Cappuccino, 
+    Croissant, 
     Latte
 }
