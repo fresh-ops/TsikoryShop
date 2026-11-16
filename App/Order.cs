@@ -1,6 +1,6 @@
 namespace App;
 
-public record Order(Guid Id, Coffee[] Coffees, decimal TotalPrice)
+public record Order(Guid Id, MenuItem[] Coffees, decimal TotalPrice)
 {
 
 }
